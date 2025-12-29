@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body class="min-h-screen p-8"
+    style="background: linear-gradient(135deg, #781C2E 0%, #4a1119 50%, #2d0a0f 100%); color: #f9e7c9;">
+
+    <div class="max-w-6xl mx-auto space-y-8">
+
+        <!-- Header -->
+        <div class="glass-panel p-6 rounded-2xl flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold" style="color: #f9e7c9;">
+                    Analysis Report</h1>
+                <p style="color: #f9e7c9; opacity: 0.7;">Session ID: <span id="sessionIdDisplay"
+                        class="font-mono">Loading...</span>
+                </p>
+                <div id="participantSelectorContainer" class="mt-2"></div>
+            </div>
+            <div id="statusIndicator" class="px-4 py-2 bg-yellow-500/20 text-yellow-500 rounded-lg animate-pulse">
+                Analyzing Logic...
+            </div>
+            <div id="downloadSection" class="hidden flex gap-4">
+                <a id="downloadVideoBtn" href="#" class="px-4 py-2 rounded transition-colors"
+                    style="background-color: #781C2E; color: #f9e7c9;"
+                    onmouseover="this.style.backgroundColor='#5a1522'"
+                    onmouseout="this.style.backgroundColor='#781C2E'">Download
+                    Video</a>
+                <a id="downloadJsonBtn" href="#" class="px-4 py-2 rounded transition-colors"
+                    style="background-color: rgba(120, 28, 46, 0.6); color: #f9e7c9;"
+                    onmouseover="this.style.backgroundColor='rgba(120, 28, 46, 0.8)'"
+                    onmouseout="this.style.backgroundColor='rgba(120, 28, 46, 0.6)'">Download
+                    JSON</a>
+            </div>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div id="content" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Emotion -->
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="text-xl font-semibold mb-4">Emotion Timeline</h3>
+                <canvas id="emotionChart"></canvas>
+            </div>
+
+            <!-- Gaze -->
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="text-xl font-semibold mb-4">Gaze Distribution</h3>
+                <canvas id="gazeChart"></canvas>
+            </div>
+
+            <!-- Speech -->
+            <div class="glass-panel p-6 rounded-2xl md:col-span-2">
+                <h3 class="text-xl font-semibold mb-4">Verbal Fluency</h3>
+                <div class="grid grid-cols-3 gap-4 mb-4">
+                    <div class="bg-slate-800 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-blue-400" id="fillerCount">-</div>
+                        <div class="text-sm text-slate-400">Filler Words</div>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-purple-400" id="longPauses">-</div>
+                        <div class="text-sm text-slate-400">Long Pauses</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800 p-4 rounded-lg max-h-60 overflow-y-auto">
+                    <h4 class="font-semibold text-slate-300 mb-2">Transcript</h4>
+                    <p id="transcriptText" class="text-slate-400 text-sm italic font-mono"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/report.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call - AI Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        video {
+            transform: scaleX(-1);
+            /* Mirror view */
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body class="h-screen flex flex-col items-center justify-center p-4 overflow-hidden"
+    style="background: linear-gradient(135deg, #781C2E 0%, #4a1119 50%, #2d0a0f 100%);">
+
+    <!-- Top Bar -->
+    <div
+        class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20 glass-panel border-b border-white/5">
+        <div class="flex items-center gap-4">
+            <h2 class="text-xl font-bold" style="color: #f9e7c9;">Session: <span id="displaySessionId" class="font-mono"
+                    style="color: #781C2E;">...</span></h2>
+            <div id="statusBadge" class="px-2 py-1 rounded-full text-xs font-semibold bg-yellow-500/20 text-yellow-500">
+                Waiting for peer...
+            </div>
+            <div id="recordingBadge"
+                class="hidden px-2 py-1 rounded-full text-xs font-semibold bg-red-500/20 text-red-500 flex items-center gap-1">
+                <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                REC
+            </div>
+        </div>
+        <div class="text-sm font-mono" style="color: #f9e7c9; opacity: 0.7;" id="timer">00:00</div>
+    </div>
+
+    <!-- Video Grid -->
+    <div class="w-full h-full flex items-center justify-center gap-4 relative">
+
+        <!-- Remote Video -->
+        <div class="relative w-full h-full rounded-2xl overflow-hidden bg-black shadow-2xl">
+            <video id="remoteVideo" autoplay playsinline class="w-full h-full"></video>
+            <div class="absolute bottom-4 left-4 px-3 py-1 rounded-lg text-sm font-medium"
+                style="background-color: rgba(120, 28, 46, 0.5); color: #f9e7c9; backdrop-filter: blur(10px);">Remote
+            </div>
+        </div>
+
+        <!-- Local Video (floating draggable or PiP style) -->
+        <div
+            class="absolute bottom-4 right-4 w-48 h-36 md:w-64 md:h-48 rounded-xl overflow-hidden bg-slate-800 shadow-2xl border border-slate-700/50 z-10 transition-all hover:scale-105">
+            <video id="localVideo" autoplay playsinline muted class="w-full h-full"></video>
+            <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded text-xs"
+                style="background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); color: #f9e7c9;">You</div>
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <div
+        class="absolute bottom-8 z-20 glass-panel px-6 py-3 rounded-full flex items-center gap-4 shadow-lg shadow-black/40">
+        <button id="cameraBtn" class="p-3 rounded-full transition-colors"
+            style="background-color: rgba(120, 28, 46, 0.6); color: #f9e7c9;"
+            onmouseover="this.style.backgroundColor='rgba(120, 28, 46, 0.8)'"
+            onmouseout="this.style.backgroundColor='rgba(120, 28, 46, 0.6)'">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+                </path>
+            </svg>
+        </button>
+        <button id="micBtn" class="p-3 rounded-full transition-colors"
+            style="background-color: rgba(120, 28, 46, 0.6); color: #f9e7c9;"
+            onmouseover="this.style.backgroundColor='rgba(120, 28, 46, 0.8)'"
+            onmouseout="this.style.backgroundColor='rgba(120, 28, 46, 0.6)'">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z">
+                </path>
+            </svg>
+        </button>
+        <button id="endCallBtn"
+            class="px-6 py-3 rounded-full bg-red-600 hover:bg-red-500 font-bold transition-transform hover:scale-105 flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z">
+                </path>
+            </svg>
+            End Call
+        </button>
+    </div>
+
+    <!-- Hidden elements for data -->
+    <input type="hidden" id="participantId" value="">
+
+    <script src="/static/js/webrtc.js"></script>
+</body>
+
+</html>

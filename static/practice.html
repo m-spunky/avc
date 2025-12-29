@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scenario Practice - AVC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen"
+    style="background: linear-gradient(135deg, #781C2E 0%, #4a1119 50%, #2d0a0f 100%); color: #f9e7c9;">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Scenario Practice</h1>
+            <a href="/scenario" class="px-4 py-2 rounded-lg transition"
+                style="background-color: rgba(120, 28, 46, 0.5); color: #f9e7c9;"
+                onmouseover="this.style.backgroundColor='rgba(120, 28, 46, 0.7)'"
+                onmouseout="this.style.backgroundColor='rgba(120, 28, 46, 0.5)'">
+                ← Back to Scenarios
+            </a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Left: Scenario Video -->
+            <div class="bg-gray-800 rounded-xl p-6 shadow-2xl">
+                <h2 class="text-xl font-semibold mb-4" id="scenarioTitle">Loading...</h2>
+                <div class="relative bg-black rounded-lg overflow-hidden mb-4" style="aspect-ratio: 16/9;">
+                    <video id="scenarioVideo" class="w-full h-full" controls>
+                        <source id="scenarioSource" src="" type="video/mp4">
+                        Your browser does not support video playback.
+                    </video>
+                </div>
+
+                <!-- Scenario Description -->
+                <p class="text-gray-300 mb-4" id="scenarioDescription"></p>
+
+                <!-- Steps Progress -->
+                <div class="space-y-2" id="stepsContainer">
+                    <!-- Steps will be dynamically inserted -->
+                </div>
+            </div>
+
+            <!-- Right: User Camera -->
+            <div class="bg-gray-800 rounded-xl p-6 shadow-2xl">
+                <h2 class="text-xl font-semibold mb-4">Your Response</h2>
+                <div class="relative bg-black rounded-lg overflow-hidden mb-4" style="aspect-ratio: 16/9;">
+                    <video id="userVideo" class="w-full h-full mirror" autoplay muted></video>
+                    <div id="recordingIndicator"
+                        class="hidden absolute top-4 right-4 flex items-center gap-2 bg-red-600 px-3 py-1 rounded-full">
+                        <div class="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+                        <span class="text-sm font-semibold">Recording</span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="space-y-4">
+                    <button id="startBtn"
+                        class="w-full px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed">
+                        Start Practice Session
+                    </button>
+
+                    <button id="endBtn"
+                        class="hidden w-full px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition">
+                        End Session & View Report
+                    </button>
+
+                    <!-- Status -->
+                    <div id="statusMessage" class="text-center text-gray-400 text-sm"></div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="mt-6 p-4 bg-gray-700 rounded-lg">
+                    <h3 class="font-semibold mb-2">Instructions:</h3>
+                    <ul class="text-sm text-gray-300 space-y-1">
+                        <li>• Click "Start Practice Session" to begin</li>
+                        <li>• Watch the scenario video and respond naturally</li>
+                        <li>• Your camera and microphone will record your response</li>
+                        <li>• Click "End Session" when finished to see your analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/practice.js"></script>
+
+    <style>
+        .mirror {
+            transform: scaleX(-1);
+        }
+    </style>
+</body>
+
+</html>

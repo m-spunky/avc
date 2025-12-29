@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Report - AVC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen"
+    style="background: linear-gradient(135deg, #781C2E 0%, #4a1119 50%, #2d0a0f 100%); color: #f9e7c9;">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold mb-2">Practice Session Report</h1>
+                <p class="text-gray-300" id="scenarioTitle">Loading...</p>
+            </div>
+            <a href="/scenario" class="px-4 py-2 rounded-lg transition"
+                style="background-color: rgba(120, 28, 46, 0.5); color: #f9e7c9;"
+                onmouseover="this.style.backgroundColor='rgba(120, 28, 46, 0.7)'"
+                onmouseout="this.style.backgroundColor='rgba(120, 28, 46, 0.5)'">
+                ← Back to Scenarios
+            </a>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="text-center py-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+            <p class="text-gray-400">Analyzing your session...</p>
+        </div>
+
+        <!-- Report Content -->
+        <div id="reportContent" class="hidden space-y-6">
+            <!-- Overall Summary -->
+            <div class="bg-gray-800 rounded-xl p-6 shadow-2xl">
+                <h2 class="text-2xl font-semibold mb-4">Overall Performance</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-sm text-gray-400 mb-1">Confidence Score</p>
+                        <p class="text-3xl font-bold" id="confidenceScore">--</p>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-sm text-gray-400 mb-1">Speech Fluency</p>
+                        <p class="text-3xl font-bold" id="fluencyScore">--</p>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-sm text-gray-400 mb-1">Emotional Stability</p>
+                        <p class="text-3xl font-bold" id="emotionalStability">--</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step-wise Analysis -->
+            <div class="bg-gray-800 rounded-xl p-6 shadow-2xl">
+                <h2 class="text-2xl font-semibold mb-4">Step-by-Step Analysis</h2>
+                <div id="stepwiseContainer" class="space-y-4">
+                    <!-- Steps will be dynamically inserted -->
+                </div>
+            </div>
+
+            <!-- Detailed Metrics -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Audio Analysis -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-2xl">
+                    <h3 class="text-xl font-semibold mb-4">🎙 Voice Analysis</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Speech Rate</span>
+                            <span class="font-semibold" id="speechRate">--</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Pause Frequency</span>
+                            <span class="font-semibold" id="pauseFreq">--</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Voice Stress</span>
+                            <span class="font-semibold" id="voiceStress">--</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Filler Words</span>
+                            <span class="font-semibold" id="fillerWords">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Analysis -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-2xl">
+                    <h3 class="text-xl font-semibold mb-4">🎥 Facial Analysis</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Dominant Emotion</span>
+                            <span class="font-semibold capitalize" id="dominantEmotion">--</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Emotional Variability</span>
+                            <span class="font-semibold" id="emotionalVar">--</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Facial Tension</span>
+                            <span class="font-semibold" id="facialTension">--</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Expressiveness</span>
+                            <span class="font-semibold" id="expressiveness">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insights & Recommendations -->
+            <div class="bg-gray-800 rounded-xl p-6 shadow-2xl">
+                <h3 class="text-xl font-semibold mb-4">💡 Insights & Strengths</h3>
+                <div id="insightsContainer" class="space-y-2">
+                    <!-- Insights will be dynamically inserted -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/scenario_report.js"></script>
+</body>
+
+</html>

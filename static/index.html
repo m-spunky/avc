@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroNet AVC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#781C2E',
+                        secondary: '#f9e7c9',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden"
+    style="background: linear-gradient(135deg, #781C2E 0%, #4a1119 50%, #2d0a0f 100%);">
+
+    <!-- Background element -->
+    <div class="absolute inset-0 z-0">
+        <div class="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
+            style="background-color: rgba(120, 28, 46, 0.3);"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"
+            style="background-color: rgba(249, 231, 201, 0.1);"></div>
+    </div>
+
+    <div class="z-10 w-full max-w-md glass-panel p-8 rounded-2xl shadow-2xl">
+        <div class="text-center mb-8" style="color: #f9e7c9;">
+            <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                AI Video Conferencing
+            </h1>
+            <p class="text-slate-400 mt-2">1-to-1 Calls with Behavioral Analysis</p>
+        </div>
+
+        <div class="flex flex-col gap-4">
+            <button id="createBtn"
+                class="w-full py-3 px-4 rounded-lg font-semibold transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg"
+                style="background-color: #781C2E; color: #f9e7c9; box-shadow: 0 10px 25px rgba(120, 28, 46, 0.3);"
+                onmouseover="this.style.backgroundColor='#5a1522'" onmouseout="this.style.backgroundColor='#781C2E'">
+                Create New Session
+            </button>
+
+            <div class="relative flex items-center gap-2 my-2">
+                <div class="h-px bg-slate-700 flex-1"></div>
+                <span class="text-slate-500 text-sm">OR JOIN</span>
+                <div class="h-px bg-slate-700 flex-1"></div>
+            </div>
+
+            <div class="flex gap-2">
+                <input type="text" id="sessionIdInput" placeholder="Enter Session ID"
+                    class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors">
+                <button id="joinBtn" class="px-6 py-3 rounded-lg font-semibold transition-colors"
+                    style="background-color: rgba(120, 28, 46, 0.6); color: #f9e7c9;"
+                    onmouseover="this.style.backgroundColor='rgba(120, 28, 46, 0.8)'"
+                    onmouseout="this.style.backgroundColor='rgba(120, 28, 46, 0.6)'">
+                    Join
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>

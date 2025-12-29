@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scenario Selection - AVC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen"
+    style="background: linear-gradient(135deg, #781C2E 0%, #4a1119 50%, #2d0a0f 100%); color: #f9e7c9;">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-4xl font-bold mb-2">Scenario Practice</h1>
+                <p style="color: #f9e7c9; opacity: 0.9;">Practice therapy sessions with AI-powered scenarios</p>
+            </div>
+            <a href="/" class="px-4 py-2 rounded-lg transition"
+                style="background-color: rgba(120, 28, 46, 0.5); color: #f9e7c9;"
+                onmouseover="this.style.backgroundColor='rgba(120, 28, 46, 0.7)'"
+                onmouseout="this.style.backgroundColor='rgba(120, 28, 46, 0.5)'">
+                ← Home
+            </a>
+        </div>
+
+        <!-- Scenarios Grid -->
+        <div id="scenariosContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Loading state -->
+            <div class="col-span-full text-center py-12">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+                <p class="text-gray-400">Loading scenarios...</p>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden col-span-full text-center py-12">
+            <svg class="w-24 h-24 mx-auto mb-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+                </path>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">No Scenarios Available</h3>
+            <p class="text-gray-400">Contact your administrator to add practice scenarios</p>
+        </div>
+    </div>
+
+    <script src="/static/js/scenario.js"></script>
+</body>
+
+</html>

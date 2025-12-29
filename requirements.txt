@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+websockets
+python-multipart
+opencv-python
+mediapipe
+deepface
+openai-whisper
+numpy
+torch
+soundfile
+tf-keras
+librosa
+requests
+python-dotenv

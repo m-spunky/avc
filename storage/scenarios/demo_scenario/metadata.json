@@ -1,0 +1,30 @@
+{
+    "id": "demo_scenario",
+    "title": "Anxiety Management Practice",
+    "description": "Practice helping a client manage anxiety symptoms. This scenario will help you develop active listening skills and learn to apply cognitive behavioral techniques.",
+    "video_path": "/storage/scenarios/demo_scenario/video.mp4",
+    "duration": 180.0,
+    "steps": [
+        {
+            "time": 0,
+            "title": "Introduction & Rapport Building",
+            "description": "Greet the client warmly and establish a comfortable therapeutic relationship"
+        },
+        {
+            "time": 30,
+            "title": "Initial Assessment",
+            "description": "Ask open-ended questions to understand the client's anxiety symptoms and triggers"
+        },
+        {
+            "time": 90,
+            "title": "Intervention & Coping Strategies",
+            "description": "Introduce breathing techniques and cognitive reframing strategies"
+        },
+        {
+            "time": 150,
+            "title": "Summary & Next Steps",
+            "description": "Summarize the session and provide homework or follow-up recommendations"
+        }
+    ],
+    "created_at": 1735365000
+}
